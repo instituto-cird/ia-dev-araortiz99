@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    # Versión fija: ubuntu-latest migra a Ubuntu 26 desde el 19-oct-2026 y la
+    # imagen podría cambiar a mitad del curso.
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7          # Node.js 24
+
+      - name: Set up Python
+        uses: actions/setup-python@v6      # Node.js 24 (v7 salió el 21-oct: dentro de la ventana de 7 días)
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.13.4"   # fija; >= 0.13.4 por incidente eMudhra/emSign
+          enable-cache: true
+
+      - name: Lockfile al día con pyproject.toml
+        run: uv lock --check
+
+      - name: Sync dependencies (locked)
+        run: uv sync --frozen --all-groups
+
+      - name: Lint (ruff)
+        run: uv run --frozen ruff check .
+
+      - name: Type check (mypy)
+        run: uv run --frozen mypy app/ --ignore-missing-imports
+
+      - name: Security scan (bandit)
+        run: uv run --frozen bandit -r app/ -ll -q
+
+      - name: Dependency audit (pip-audit)
+        run: |
+          uv export --frozen --all-groups --all-extras --no-emit-project > /tmp/requirements.txt
+          uv run --frozen pip-audit -r /tmp/requirements.txt --disable-pip --no-deps
+
+      - name: Tests + coverage (pytest)
+        run: uv run --frozen pytest -q --cov=app --cov-report=term-missing --cov-fail-under=60
