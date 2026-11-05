@@ -284,8 +284,9 @@ Ambos tracks comparten los mismos requisitos de CI, `AI_USAGE.md`, `DEMO_PLAN.md
 - [ReAct pattern (paper)](https://arxiv.org/abs/2210.03629)
 
 
+
 ## Autor/a
 
 **Nombre: Andrea Ortiz** Nombre Apellido
 **Ciudad: Luque** Ciudad
-**Qué me gustaría construir en el programa: Desarrollar soluciones con IA** una línea.
+**Qué me gustaría construir en el programa: Software con IA** una línea.

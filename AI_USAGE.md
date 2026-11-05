@@ -33,14 +33,14 @@ Fuente: Feng, K. J. K., McDonald, D. W. y Zhang, A. X. (2025). *Levels of Autono
 
 | Campo | Detalle |
 |---|---|
-| Fecha | AAAA-MM-DD |
-| Herramienta | (ChatGPT / Claude / Copilot / ninguna / otra) |
-| Nivel de autonomía | (ninguno / 1 operador / 2 colaborador / 3 consultor / 4 aprobador / 5 observador) |
-| Para qué se usó | Ej.: «Pedí que me explicara un error de uv sync en Windows» |
-| Qué hizo la IA | Ej.: «Sugirió reinstalar Python marcando "Add to PATH"» |
-| Qué hubo que corregir o rehacer | Ej.: «Nada» / «La primera sugerencia era para macOS y no aplicaba» |
-| Cómo se verificó | Ej.: «Volví a ejecutar verify_setup.sh y quedó en verde» |
-| Qué decisión fue propia | Ej.: «Revisé que .env no quedara en el commit antes de hacer push» |
+| Fecha | 2026-11-05 |
+| Herramienta | (ChatGPT) |
+| Nivel de autonomía | ( 2 colaborador ) |
+| Para qué se usó | «Solicité ayuda para diagnosticar un error al ejecutar bash scripts/verify_setup.sh desde PowerShell en Windows.» |
+| Qué hizo la IA | «Identificó que Windows intentaba utilizar WSL sin tener una distribución Linux instalada y recomendó ejecutar el script desde Git Bash."» |
+| Qué hubo que corregir o rehacer | «La primera ejecución desde la terminal en vs code no funcionó. Fue necesario ejecutar el script  desde Git Bash.» |
+| Cómo se verificó | «Ejecuté nuevamente bash scripts/verify_setup.sh desde Git Bash. Resultado: 27 verificaciones aprobadas, 0 errores y 1 advertencia. El entorno quedó listo para los Labs.» |
+| Qué decisión fue propia | Ej.: «Elegí utilizar Git Bash como alternativa a instalar WSL, revisé el resultado de las verificaciones y comprobé que .env no se incluya en los cambios del repositorio.» |
 | Commit o pull request | (se completa después de abrir el pull request) |
 
 <!-- Copiar el bloque de la entrada para cada nueva (001, 002…) -->
